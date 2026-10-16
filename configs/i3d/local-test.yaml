@@ -1,0 +1,38 @@
+global:
+  seed: 73
+  model_name: i3d
+
+execution:
+  batch_size: 3
+  accumulate_grad_batches: 1
+  num_workers: 0
+  use_gradient_checkpointing: false
+
+dataset:
+  data_root: /path/to/lsfb-isol/
+  train_split: local_sample # created by scripts/splits/make_local_split.py
+  val_split: local_sample
+  num_classes: 700
+
+pipeline:
+  max_frames: 80
+  num_frames: 48
+  crop_size: 224
+
+model:
+  pretrained_path: /path/to/i3d_rgb_charades.pt
+  freeze_encoder: false
+
+  i3d:
+    head_dropout: 0.4
+
+optimizer:
+  name: sgd
+  lr: 0.01
+  weight_decay: 5.0e-6
+  momentum: 0.9
+
+training:
+  max_epochs: 4
+  warmup_epochs: 1
+  resume_from: null

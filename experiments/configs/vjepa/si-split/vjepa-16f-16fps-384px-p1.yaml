@@ -1,0 +1,32 @@
+global:
+  seed: 73
+  model_name: vjepa
+execution:
+  batch_size: 32
+  accumulate_grad_batches: 1
+  num_workers: 4
+  use_gradient_checkpointing: false
+dataset:
+  data_root: /path/to/lsfb-isol
+  train_split: si_train
+  val_split: si_val
+  num_classes: 700
+pipeline:
+  max_frames: 80
+  num_frames: 16
+  crop_size: 384
+  target_fps: 16.0
+model:
+  pretrained_path: /path/to/vjepa2_1_vitb_dist_vitG_384.pt
+  freeze_encoder: true
+  vjepa:
+    head_dropout: 0.4
+optimizer:
+  name: adamw
+  lr: 0.00022
+  weight_decay: 0.0001
+training:
+  max_epochs: 50
+  warmup_epochs: 5
+  resume_from: null
+  load_weights_from: null

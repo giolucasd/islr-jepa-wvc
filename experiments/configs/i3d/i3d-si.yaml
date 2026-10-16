@@ -1,0 +1,31 @@
+global:
+  seed: 73
+  model_name: i3d
+execution:
+  batch_size: 32
+  accumulate_grad_batches: 1
+  num_workers: 4
+  use_gradient_checkpointing: false
+dataset:
+  data_root: /path/to/lsfb-isol
+  train_split: si_train
+  val_split: si_val
+  num_classes: 700
+pipeline:
+  max_frames: 80
+  num_frames: 48
+  crop_size: 224
+model:
+  pretrained_path: /path/to/i3d_rgb_charades.pt
+  freeze_encoder: false
+  i3d:
+    head_dropout: 0.23
+optimizer:
+  name: sgd
+  lr: 0.032
+  momentum: 0.97
+  weight_decay: 3.3e-06
+training:
+  max_epochs: 50
+  warmup_epochs: 5
+  resume_from: null

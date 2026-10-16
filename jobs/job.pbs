@@ -1,0 +1,47 @@
+#!/bin/bash
+#PBS -N vj-16f-25fps-224px-p2
+#PBS -q umagpu
+#PBS -m abe
+#PBS -l walltime=167:00:00
+#PBS -e outputs/vjepa/si-split/vjepa-16f-25fps-224px-p2/err.log
+#PBS -o outputs/vjepa/si-split/vjepa-16f-25fps-224px-p2/out.log
+
+set -e
+set -u
+
+echo "=========================================="
+echo "=== PBS job started ======================"
+echo "Job ID:        $PBS_JOBID"
+echo "Queue:         $PBS_QUEUE"
+echo "Node:          $(hostname)"
+echo "Workdir:       $PBS_O_WORKDIR"
+echo "Date:          $(date)"
+echo "=========================================="
+echo
+
+cd "$PBS_O_WORKDIR"
+
+mkdir -p /work/username/islr-jepa/vjepa/si-split/vjepa-16f-25fps-224px-p2/
+mkdir -p outputs/vjepa/si-split/vjepa-16f-25fps-224px-p2/
+
+echo "=== GPU visibility check ==="
+nvidia-smi
+echo
+
+echo "CUDA_VISIBLE_DEVICES: ${CUDA_VISIBLE_DEVICES:-not set}"
+echo
+
+echo "=== Starting training ==="
+echo
+
+uv run --offline scripts/train.py \
+    --config "$PBS_O_WORKDIR/configs/untracked/vjepa-16f-25fps-224px-p2.yaml" \
+    --output-path /work/username/islr-jepa/vjepa/si-split/vjepa-16f-25fps-224px-p2/
+
+cp -r /work/username/islr-jepa/vjepa/si-split/vjepa-16f-25fps-224px-p2/* outputs/vjepa/si-split/vjepa-16f-25fps-224px-p2/
+
+echo
+echo "=========================================="
+echo "=== PBS job finished ====================="
+echo "Date: $(date)"
+echo "=========================================="
