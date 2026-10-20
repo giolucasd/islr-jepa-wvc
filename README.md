@@ -101,14 +101,14 @@ python -m scripts.evaluate \
 
 ## 6. Model Zoo & Pretrained Weights
 
-Pretrained model checkpoints, logs, and evaluation artifacts are hosted via GitHub Releases.
+Pretrained model checkpoints are hosted via Hugging Face.
 
 | Model | Split | Resolution | Frames / FPS | Micro Top-1 | Download |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **I3D (Baseline)** | SI | 224x224 | 48f / 50fps | 51.77% | `[Checkpoint Placeholder]` |
-| **V-JEPA (Frozen)** | SI | 384x384 | 16f / 50fps | 44.67% | `[Checkpoint Placeholder]` |
-| **V-JEPA (Full FT)** | SI | 384x384 | 16f / 50fps | 57.56% | `[Checkpoint Placeholder]` |
-| **V-JEPA (Full FT)** | SI | 384x384 | 16f / 25fps | **57.78%** | `[Checkpoint Placeholder]` |
+| **I3D (Baseline)** | SI | 224x224 | 48f / 50fps | 51.77% | [giolucasd/i3d-48f-50fps-224px](https://huggingface.co/giolucasd/i3d-48f-50fps-224px) |
+| **V-JEPA (Full FT)** | SI | 384x384 | 16f / 25fps | **57.78%** | [giolucasd/vjepa-16f-25fps-384px-p2](https://huggingface.co/giolucasd/vjepa-16f-25fps-384px-p2) |
+
+All experimental artifacts will soon be released in a data repository following FAIR (Findable, Accessible, Interoperable, Reusable) principles.
 
 ## 7. Citation
 
@@ -119,8 +119,6 @@ If you use this repository or our findings in your research, please cite our pap
   title={Sign Language Recognition with Video Foundation Models: V-JEPA Transfer and Adaptation},
   author={Giovanne Mariano and H{\'e}lio Pedrini},
   booktitle={Workshop de Vis{\~a}o Computacional (WVC)},
-  pages={XX--XX},
-  year={2026},
-  organization={SBC}
+  year={2026}
 }
 ```
