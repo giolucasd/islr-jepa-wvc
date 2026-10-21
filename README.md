@@ -10,7 +10,10 @@ This repository provides a reproducible and configurable training pipeline for i
 - [5. Usage](#5-usage)
   - [5.1. Training](#51-training)
   - [5.2. Evaluation](#52-evaluation)
-- [6. Model Zoo \& Pretrained Weights](#6-model-zoo--pretrained-weights)
+- [6. Pretrained Weights \& Experimental Artifacts](#6-pretrained-weights--experimental-artifacts)
+  - [6.1. Experiment Configurations](#61-experiment-configurations)
+  - [6.2. Pretrained Model Weights](#62-pretrained-model-weights)
+  - [6.3. Training Artifacts \& Logs](#63-training-artifacts--logs)
 - [7. Citation](#7-citation)
 
 
@@ -99,16 +102,23 @@ python -m scripts.evaluate \
     --split si_test
 ```
 
-## 6. Model Zoo & Pretrained Weights
+## 6. Pretrained Weights & Experimental Artifacts
 
-Pretrained model checkpoints are hosted via Hugging Face.
+### 6.1. Experiment Configurations
+Experiment configurations (`.yaml`) for all runs are version-controlled in the [`experiments/`](experiments/) directory. Note that to reproduce experiments, you have to fill `datasets.data_root`, `model.pretrained_path` and `training.resume_from`.
+
+### 6.2. Pretrained Model Weights
+
+Pretrained weights for our primary models evaluated on the Signer-Independent (SI) split are hosted on Hugging Face:
 
 | Model | Split | Resolution | Frames / FPS | Micro Top-1 | Download |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **I3D (Baseline)** | SI | 224x224 | 48f / 50fps | 51.77% | [giolucasd/i3d-48f-50fps-224px](https://huggingface.co/giolucasd/i3d-48f-50fps-224px) |
-| **V-JEPA (Full FT)** | SI | 384x384 | 16f / 25fps | **57.78%** | [giolucasd/vjepa-16f-25fps-384px-p2](https://huggingface.co/giolucasd/vjepa-16f-25fps-384px-p2) |
+| :--- | :---: | :---: | :---: | :---: | :--- |
+| **I3D (Baseline)** | SI | 224×224 | 48f / 50fps | 51.77% | [🤗 Model Card](https://huggingface.co/giolucasd/i3d-48f-50fps-224px) |
+| **V-JEPA (Full FT)** | SI | 384×384 | 16f / 25fps | **57.78%** | [🤗 Model Card](https://huggingface.co/giolucasd/vjepa-16f-25fps-384px-p2) |
 
-All experimental artifacts will soon be released in a data repository following FAIR (Findable, Accessible, Interoperable, Reusable) principles.
+### 6.3. Training Artifacts & Logs
+
+All additional experimental artifacts -- including TensorBoard event logs, metric summaries, training and validation curves -- are archived and directly downloadable via [GitHub Release v1.0.0](https://github.com/giolucasd/islr-jepa-wvc/releases/tag/v1.0.0) (`experimental-artifacts-no-weights.zip`, 1.3 MB).
 
 ## 7. Citation
 
